@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 # TODO:
 # * Add visuals
 # * Add tests
+# * Added dynamic rates
 
 
 if __name__ == '__main__':
