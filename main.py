@@ -17,6 +17,10 @@ logger = logging.getLogger(__name__)
 # * Add visuals
 # * Add tests
 # * Added dynamic rates
+# * Celestial creation
+#   + Store of celestial data (body mass, etc.)
+#   + Methods to automatically instantiate orbital parameters
+# * Better entry point
 
 
 if __name__ == '__main__':
