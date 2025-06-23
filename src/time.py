@@ -76,12 +76,24 @@ class Time:
 
 # A Stopwatch is used to track timestamps and their deltas
 class Stopwatch:
-    def __init__(self, max_length: int = 2):
-        
+    def __init__(self, goal: float | None = None, max_length: int = 2):
+    
         self.timestamps: list[float] = [time()]
+        
+        # Aims for self.delta() to return value close to this
+        self.goal: float | None = goal
         
         # The max number of timestamps
         self.max_length: int = max_length
+        
+    # If time since last stamp is greater/equal to 
+    # goal, return true and push the timestamp.
+    # If no goal was set, considers it as goal met.
+    def __call__(self) -> bool:        
+        if self.goal == None or self.since() >= self.goal:
+            self.push()
+            return True
+        return False
         
     # Pushes a value onto the timestamps pile
     def push(self, timestamp: float | None = None) -> None:
