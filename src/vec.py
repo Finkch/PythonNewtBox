@@ -51,6 +51,13 @@ class Vector:
             self.z / Decimal(other),
         )
         
+    def __neg__(self) -> Vector:
+        return Vector(
+            -self.x,
+            -self.y,
+            -self.z,
+        )
+        
     # Vector operators
     def dot(self, other: Vector) -> Decimal:
         return self.x * other.x + self.y * other.y + self.z * other.z
@@ -59,5 +66,5 @@ class Vector:
         return Vector(
             self.y * other.z - self.z * other.y,
             self.z * other.x - self.x * other.z,
-            self.x * other.y - self.y * other.x
+            self.x * other.y - self.y * other.x,
         )
