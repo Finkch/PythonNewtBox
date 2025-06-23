@@ -2,11 +2,15 @@
 
 from decimal import Decimal
 from pynput import keyboard
+import logging
 
 from .body import Body
 from .vector import Vector
 from .constants import G
 from .time import Times, Stopwatch
+
+
+logger = logging.getLogger(__name__)
 
 # Required to be a global for the asynchronous keyboard listener
 running: bool = True
@@ -22,12 +26,25 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
     # Used to control when printouts occur
     printtimer: Stopwatch = Stopwatch(goal = 1 / 60)
     
+    # How often to push simulation state into debug logs
+    loggertimer: Stopwatch = Stopwatch(goal = 1)
+    
     # Adds key listener to allow escaping simulation loop
     listener = keyboard.Listener(on_press = on_press)
     listener.start()
     
+    logger.info(f'Starting simulation with {len(bodies)} bodies...')
+    
     # Simulation loop
     while running:
+        
+        # Performs a printout
+        if printtimer():
+            logger.debug(f'{time}' + ''.join([f'\n{body}' for body in bodies]))
+            
+        # Separate timer for file write to mitigate endless log file growth
+        if loggertimer():
+            logger.info(f'{time}' + '\n'.join([f'{body}' for body in bodies]))
         
         # Applies gravity
         gravity(bodies)
@@ -35,10 +52,6 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
         # Moves bodies through spacetime
         for body in bodies:
             body.step(time.real.t)
-            
-        # Performs a printout
-        if printtimer():
-            printout(time, bodies)
         
         # Increments current step
         time.step()
@@ -66,13 +79,6 @@ def gravity(bodies: list[Body]) -> None:
             a.force(fg)
             b.force(-fg)
 
-
-
-# Debug print to console
-def printout(time: Times, bodies: list[Body]) -> None:
-    print(f'\n{time}')
-    for body in bodies:
-        print(f'{body}')
 
 
 
