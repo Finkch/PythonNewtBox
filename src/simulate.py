@@ -7,9 +7,26 @@ from .vector import Vector
 from .constants import G
 
 # Simulation loop.
-#   t: the length of time in each simulation step
+#   t: the length of seconds in each simulation step
 def simulate(t: Decimal, bodies: list[Body]) -> None:
-    pass
+    
+    # How many steps have occured since the start of the simulation
+    step: int = 0
+    
+    # Simulation loop
+    while True:
+        
+        # Applies gravity
+        gravity(bodies)
+        
+        # Moves bodies through spacetime
+        for body in bodies:
+            body.step(t)
+            
+        printout(step, t, bodies)
+        
+        # Increments current step
+        step += 1
 
 
 
@@ -33,3 +50,8 @@ def gravity(bodies: list[Body]) -> None:
             # Applies the force onto each body
             a.force(fg)
             b.force(-fg)
+
+def printout(s: int, t: Decimal, bodies: list[Body]) -> None:
+    print(f'\nTime elapsed: {s * t:.0f}s ({s} steps)')
+    for body in bodies:
+        print(f'{body}')
