@@ -74,21 +74,47 @@ class Time:
         return f'{years}y, {days % 365:03}d, {hours % 24:02}:{minutes % 60:02}:{seconds % 60:02}'
 
 
+# A Stopwatch is used to track timestamps and their deltas
+class Stopwatch:
+    def __init__(self, max_length: int = 5):
+        self.max_length: int = max_length
+        self.timestamps: list[float] = []
+        
+    # Pushes a value onto the timestamps pile
+    def push(self, timestamp: float | None = None) -> None:
+        if not timestamp:
+            timestamp = time()
+        self.timestamps.append(timestamp)
+        
+    # Returns the most recent timestamp
+    def peek(self) -> float:
+        return self.timestamps[-1]
+        
+    # Returns the difference between the two most recent timestamps
+    def delta(self) -> float:
+        if len(self.timestamps) < 2:
+            return 0
+        return self.timestamps[-1] - self.timestamps[-2]  
+      
+    # Returns elapsed time since last timestamp
+    def since(self) -> float:
+        return time() - self.peek()
+
+
 
 # A stopwatch tracks both real time and simulation time
-class Stopwatch:
+class Times:
     def __init__(self, t: int | float | Decimal = 1):
         self.simulation: Time = Time(t)
         self.real: Time = Time(0)
         
-        self.timestamp: float = time()
+        self.stopwatch: Stopwatch = Stopwatch()
         
     def step(self) -> None:
         self.simulation.step()
         
-        now: float = time()
-        self.real.step(now - self.timestamp)
-        self.timestamp = now
+        self.stopwatch.push()
+        self.real.step(self.stopwatch.delta())
         
     def __str__(self) -> str:
         return f'Simulation time: {self.simulation}\nReal time:\t {self.real}'
