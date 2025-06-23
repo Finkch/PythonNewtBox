@@ -78,7 +78,7 @@ class Time:
 class Stopwatch:
     def __init__(self, max_length: int = 5):
         self.max_length: int = max_length
-        self.timestamps: list[float] = []
+        self.timestamps: list[float] = [time()]
         
     # Pushes a value onto the timestamps pile
     def push(self, timestamp: float | None = None) -> None:
