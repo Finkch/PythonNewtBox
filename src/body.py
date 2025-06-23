@@ -1,6 +1,8 @@
 # A Body is a planet, a star, or other actor with mass
 
 from decimal import Decimal
+import logging
+logger = logging.getLogger(__name__)
 
 from .vector import Vector
 
@@ -16,6 +18,8 @@ class Body:
         # Since acceleration is reset at the end of every step, we track
         # a fake acceleration for ease of logging
         self.fake_acc: Vector = Vector()
+        
+        logger.info(f'Created body: {self}')
 
     # Applies a force onto the body
     def force(self, newtons: Vector) -> None:
