@@ -139,4 +139,4 @@ class Times:
         self.real.step(self.stopwatch.delta())
         
     def __str__(self) -> str:
-        return f'Simulation time: {self.simulation}\nReal time:\t {self.real}'
+        return f'Simulation time: {self.simulation} ({self.simulation.steps} steps)\nReal time:\t {self.real} ({1 / self.stopwatch.delta():.1f} steps per second)'
