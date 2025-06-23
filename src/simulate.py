@@ -4,25 +4,25 @@ from decimal import Decimal
 
 from .body import Body
 from .vector import Vector
-from .time import Time
 from .constants import G
+from .time import Stopwatch
 
 # Simulation loop.
 #   t: the length of seconds in each simulation step
 def simulate(t: Decimal, bodies: list[Body]) -> None:
     
     # How many steps have occured since the start of the simulation
-    time: Time = Time(t)
+    time: Stopwatch = Stopwatch(t)
     
     # Simulation loop
-    while time < 3.154e+7:
+    while time.simulation < 3.154e+7:
         
         # Applies gravity
         gravity(bodies)
         
         # Moves bodies through spacetime
         for body in bodies:
-            body.step(time.t)
+            body.step(time.real.t)
             
         printout(time, bodies)
         
@@ -52,7 +52,7 @@ def gravity(bodies: list[Body]) -> None:
             a.force(fg)
             b.force(-fg)
 
-def printout(time: Time, bodies: list[Body]) -> None:
-    print(f'\nTime elapsed: {time}')
+def printout(time: Stopwatch, bodies: list[Body]) -> None:
+    print(f'{time}')
     for body in bodies:
         print(f'{body}')
