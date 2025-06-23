@@ -29,3 +29,10 @@ class Body:
         # Reset acceleration
         self.fake_acc = self.acc
         self.acc = Vector()
+        
+    # To string
+    def __str__(self) -> str:
+        return f'''{self.name} ({self.mass:.2e} kg):
+    * Position:\t{self.pos}
+    * Velocity:\t{self.vel}
+    * Acceleration:\t{self.acc}'''
