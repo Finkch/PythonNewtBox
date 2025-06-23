@@ -88,3 +88,7 @@ class Vector:
             self.y / mag,
             self.z / mag,
         )
+
+    # To string
+    def __str__(self) -> str:
+        return f'{self.x}, {self.y}, {self.z}'
