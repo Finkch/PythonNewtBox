@@ -15,7 +15,7 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
     time: Time = Time(t)
     
     # Simulation loop
-    while True:
+    while time < 3.154e+7:
         
         # Applies gravity
         gravity(bodies)
