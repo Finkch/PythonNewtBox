@@ -6,7 +6,7 @@ from pynput import keyboard
 from .body import Body
 from .vector import Vector
 from .constants import G
-from .time import Times
+from .time import Times, Stopwatch
 
 # Required to be a global for the asynchronous keyboard listener
 running: bool = True
@@ -17,6 +17,9 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
     
     # How many steps have occured since the start of the simulation
     time: Times = Times(t)
+    
+    # Used to control when printouts occur
+    printtimer: Stopwatch = Stopwatch(goal = 1 / 60)
     
     # Adds key listener to allow escaping simulation loop
     listener = keyboard.Listener(on_press = on_press)
@@ -32,7 +35,9 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
         for body in bodies:
             body.step(time.real.t)
             
-        printout(time, bodies)
+        # Performs a printout
+        if printtimer():
+            printout(time, bodies)
         
         # Increments current step
         time.step()
