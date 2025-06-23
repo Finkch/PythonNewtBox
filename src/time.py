@@ -14,6 +14,37 @@ class Time:
         # Total time elapsed
         self.total: Decimal = Decimal(0)
         
+    # Comparison operators
+    def __lt__(self, other: object) -> bool:
+        if not isinstance(other, (int, float, Decimal, Time)):
+            raise TypeError(f'Cannot compare Time with non-Time or non-scalar value of type {type(other)}')
+        
+        if isinstance(other, Time):
+            return self.total < other.total
+        return self.total < other
+        
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, (int, float, Decimal, Time)):
+            raise TypeError(f'Cannot compare Time with non-Time or non-scalar value of type {type(other)}')
+        
+        if isinstance(other, Time):
+            return self.total == other.total
+        elif isinstance(other, Decimal):
+            return self.total == other
+        else:
+            return self.total == Decimal(other)
+            
+    def __le__(self, other: object) -> bool:
+        return self < other or self == other
+        
+    def __gt__(self, other: object) -> bool:
+        return not self <= other
+    
+    def __ge__(self, other: object) -> bool:
+        return not self < other
+    
+    
+        
     # Changes the seconds per step
     def change(self, t: int | float | Decimal) -> None:
         if not isinstance(t, Decimal):
