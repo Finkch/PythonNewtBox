@@ -2,6 +2,8 @@
 
 from decimal import Decimal
 
+from time import time
+
 class Time:
     def __init__(self, t: int | float | Decimal = 1):
         
@@ -70,3 +72,23 @@ class Time:
         years: int      = int(days // 365)
         
         return f'{years}y, {days % 365:03}d, {hours % 24:02}:{minutes % 60:02}:{seconds % 60:02} ({self.steps} steps)'
+
+
+
+# A stopwatch tracks both real time and simulation time
+class Stopwatch:
+    def __init__(self, t: int | float | Decimal = 1):
+        self.simulation: Time = Time(t)
+        self.real: Time = Time(0)
+        
+        self.timestamp: float = time()
+        
+    def step(self) -> None:
+        self.simulation.step()
+        
+        now: float = time()
+        self.real.step(now - self.timestamp)
+        self.timestamp = now
+        
+    def __str__(self) -> str:
+        return f'Simulation time: {self.simulation}\nReal time:\t {self.real}'
