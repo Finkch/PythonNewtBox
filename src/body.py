@@ -33,6 +33,6 @@ class Body:
     # To string
     def __str__(self) -> str:
         return f'''{self.name} ({self.mass:.2e} kg):
-    * Position:\t{self.pos}
-    * Velocity:\t{self.vel}
+    * Position:\t\t{self.pos}
+    * Velocity:\t\t{self.vel}
     * Acceleration:\t{self.fake_acc}'''
