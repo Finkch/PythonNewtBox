@@ -46,7 +46,7 @@ class Vector:
             self.z * Decimal(other),
         )
     
-    def __div__(self, other: object) -> Vector:
+    def __truediv__(self, other: object) -> Vector:
         if not isinstance(other, (int, float, Decimal)):
             raise ArithmeticError(f'Cannot divide Vector by non-scalar of type {type(other)}')
             
@@ -82,12 +82,7 @@ class Vector:
     
     # Gets the unit-length normal vector
     def normal(self) -> Vector:
-        mag: Decimal = self.magnitude()
-        return Vector(
-            self.x / mag,
-            self.y / mag,
-            self.z / mag,
-        )
+        return self / self.magnitude()
 
     # To string
     def __str__(self) -> str:
