@@ -61,7 +61,7 @@ def gravity(bodies: list[Body]) -> None:
             b.force(-fg)
 
 def printout(time: Stopwatch, bodies: list[Body]) -> None:
-    print(f'{time}')
+    print(f'\n{time}')
     for body in bodies:
         print(f'{body}')
 
