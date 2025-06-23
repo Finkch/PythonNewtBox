@@ -6,6 +6,8 @@ from __future__ import annotations
 # This project will use the default 28-digits of decimal precision.
 from decimal import Decimal
 
+
+# A 3-component vector with vector arithmetic
 class Vector:
     def __init__(self, x: Decimal | float = 0, y: Decimal | float = 0, z: Decimal | float = 0):
         self.x: Decimal = Decimal(x)
