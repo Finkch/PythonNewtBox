@@ -13,6 +13,11 @@ from src.simulate import simulate
 logger = logging.getLogger(__name__)
 
 
+# TODO:
+# * Add visuals
+# * Add tests
+
+
 if __name__ == '__main__':
     
     # Sets up the logger
