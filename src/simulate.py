@@ -11,6 +11,7 @@ from .time import Times, Stopwatch
 # Required to be a global for the asynchronous keyboard listener
 running: bool = True
 
+
 # Simulation loop.
 #   t: the length of seconds in each simulation step
 def simulate(t: Decimal, bodies: list[Body]) -> None:
@@ -65,10 +66,14 @@ def gravity(bodies: list[Body]) -> None:
             a.force(fg)
             b.force(-fg)
 
+
+
+# Debug print to console
 def printout(time: Times, bodies: list[Body]) -> None:
     print(f'\n{time}')
     for body in bodies:
         print(f'{body}')
+
 
 
 # Keyboard listener to exit simulation loop when `esc` is pressed
