@@ -45,7 +45,7 @@ def gravity(bodies: list[Body]) -> None:
             
             # Gravitational force between bodies
             # fg = G m1 m2 r_bold / |r|^3
-            fg: Vector = r * G * a.mass * b.mass / r.magnitude() ** 3
+            fg: Vector = G * a.mass * b.mass * r / r.magnitude() ** 3
             
             # Applies the force onto each body
             a.force(fg)

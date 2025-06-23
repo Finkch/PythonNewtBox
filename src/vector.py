@@ -46,6 +46,9 @@ class Vector:
             self.z * Decimal(other),
         )
     
+    def __rmul__(self, other: object) -> Vector:
+        return self * other
+    
     def __truediv__(self, other: object) -> Vector:
         if not isinstance(other, (int, float, Decimal)):
             raise ArithmeticError(f'Cannot divide Vector by non-scalar of type {type(other)}')
