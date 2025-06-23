@@ -17,6 +17,9 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
 def gravity(bodies: list[Body]) -> None:
     
     # Considers each pair only once
+    #   a, b:   celestial bodies
+    #   r:      displacement vector
+    #   fg:     f_G, force of gravity
     for (i, a) in enumerate(bodies[:-1]):
         for b in bodies[i + 1:]:
             
