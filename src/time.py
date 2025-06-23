@@ -71,7 +71,7 @@ class Time:
         days: int       = int(hours // 24)
         years: int      = int(days // 365)
         
-        return f'{years}y, {days % 365:03}d, {hours % 24:02}:{minutes % 60:02}:{seconds % 60:02} ({self.steps} steps)'
+        return f'{years}y, {days % 365:03}d, {hours % 24:02}:{minutes % 60:02}:{seconds % 60:02}'
 
 
 
