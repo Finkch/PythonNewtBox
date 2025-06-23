@@ -35,4 +35,4 @@ class Body:
         return f'''{self.name} ({self.mass:.2e} kg):
     * Position:\t{self.pos}
     * Velocity:\t{self.vel}
-    * Acceleration:\t{self.acc}'''
+    * Acceleration:\t{self.fake_acc}'''
