@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-# The Decimal library will give us fixed-point arithmetic.
-# This project will use the default 28-digits of decimal precision.
 from decimal import Decimal
 
 
@@ -89,4 +87,4 @@ class Vector:
 
     # To string
     def __str__(self) -> str:
-        return f'{self.x}, {self.y}, {self.z}'
+        return f'{self.x:.4e}, {self.y:.4e}, {self.z:.4e}'
