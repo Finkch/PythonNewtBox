@@ -1,4 +1,6 @@
 
+# The Decimal library will give us fixed-point arithmetic.
+# This project will use the default 28-digits of decimal precision.
 from decimal import Decimal
 
 from src.body import Body
@@ -15,4 +17,4 @@ if __name__ == '__main__':
         vel = Vector(y = 2.978e4),
     )
     
-    simulate(Decimal(1), [sol, terra])
+    simulate(Decimal(1 * 60), [sol, terra])
