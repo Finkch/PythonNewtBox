@@ -80,17 +80,21 @@ class Stopwatch:
     
         self.timestamps: list[float] = [time()]
         
-        # Aims for self.delta() to return value close to this
+        # Aims for self.since() to return value close to this.
+        # If goal == None, goal will never be met.
+        # If goal <= 0, goal will always be met.
         self.goal: float | None = goal
         
         # The max number of timestamps
         self.max_length: int = max_length
         
     # If time since last stamp is greater/equal to 
-    # goal, return true and push the timestamp.
-    # If no goal was set, considers it as goal met.
-    def __call__(self) -> bool:        
-        if self.goal == None or self.since() >= self.goal:
+    # goal, return true and push the timestamp
+    def __call__(self) -> bool:
+        if self.goal == None:
+            return False
+        
+        if self.since() >= self.goal:
             self.push()
             return True
         return False
