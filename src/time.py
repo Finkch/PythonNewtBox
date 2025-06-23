@@ -12,7 +12,7 @@ class Time:
         self.steps: int = 0
         
         # Total time elapsed
-        self.total: Decimal = Decimal(0)
+        self.time: Decimal = Decimal(0)
         
     # Comparison operators
     def __lt__(self, other: object) -> bool:
@@ -20,19 +20,19 @@ class Time:
             raise TypeError(f'Cannot compare Time with non-Time or non-scalar value of type {type(other)}')
         
         if isinstance(other, Time):
-            return self.total < other.total
-        return self.total < other
+            return self.time < other.time
+        return self.time < other
         
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, (int, float, Decimal, Time)):
             raise TypeError(f'Cannot compare Time with non-Time or non-scalar value of type {type(other)}')
         
         if isinstance(other, Time):
-            return self.total == other.total
+            return self.time == other.time
         elif isinstance(other, Decimal):
-            return self.total == other
+            return self.time == other
         else:
-            return self.total == Decimal(other)
+            return self.time == Decimal(other)
             
     def __le__(self, other: object) -> bool:
         return self < other or self == other
@@ -54,13 +54,16 @@ class Time:
         self.t: Decimal = t
         
     # Steps forward one
-    def step(self) -> None:
+    def step(self, t: int | float | Decimal | None = None) -> None:
+        if t:
+            self.change(t)
+        
         self.steps += 1
-        self.total += self.t
+        self.time += self.t
     
     # To string
     def __str__(self) -> str:
-        seconds: int    = int(self.total)
+        seconds: int    = int(self.time)
         minutes: int    = int(seconds // 60)
         hours: int      = int(minutes // 60)
         days: int       = int(hours // 24)
