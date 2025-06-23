@@ -73,3 +73,18 @@ class Vector:
             self.z * other.x - self.x * other.z,
             self.x * other.y - self.y * other.x,
         )
+        
+    # Other useful methods
+    
+    # Returns the absolute size of the vector
+    def magnitude(self) -> Decimal:
+        return (self.x ** Decimal(2) + self.y ** Decimal(2) + self.z ** Decimal(2)) ** Decimal('0.5')
+    
+    # Gets the unit-length normal vector
+    def normal(self) -> Vector:
+        mag: Decimal = self.magnitude()
+        return Vector(
+            self.x / mag,
+            self.y / mag,
+            self.z / mag,
+        )
