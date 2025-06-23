@@ -1,6 +1,9 @@
 # A Vec is a 3-component vector
 
 from __future__ import annotations
+
+# The Decimal library will give us fixed-point arithmetic.
+# This project will use the default 28-digits of decimal precision.
 from decimal import Decimal
 
 class Vector:
