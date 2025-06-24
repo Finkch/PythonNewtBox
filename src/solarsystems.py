@@ -30,11 +30,6 @@ class SolarSystemFactory:
 
         self.solarsystem[body.name] = body
 
-    # Loads our solar system
-    def default(self) -> None:
-        for body in self.data:
-            self.add(body)
-
 
 
     # Creates a body from data
@@ -86,3 +81,20 @@ class SolarSystemFactory:
             }
 
         return bodies
+
+
+
+    # Some predefined solar systems
+    def create(self, name: str) -> None:
+        match name:
+
+            # All celestial bodies stored in the data file
+            case 'default':
+                for body in self.data:
+                    self.add(body)
+
+            # A simple three body system
+            case 'simple':
+                self.add('Sun')
+                self.add('Earth')
+                self.add('Moon')
