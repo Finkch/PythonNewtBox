@@ -125,27 +125,6 @@
       "mass_kg": 9.393e20,
       "semi_major_axis_km": 413690250,
       "period_days": 1680.0
-    },
-    {
-      "name": "Alpha Centauri A",
-      "parent": null,
-      "mass_kg": 2.187e30,
-      "semi_major_axis_km": 0,
-      "period_days": 0
-    },
-    {
-      "name": "Alpha Centauri B",
-      "parent": "Alpha Centauri A",
-      "mass_kg": 1.804e30,
-      "semi_major_axis_km": 23000000000,
-      "period_days": 7985
-    },
-    {
-      "name": "Proxima Centauri",
-      "parent": "Alpha Centauri AB",
-      "mass_kg": 2.446e29,
-      "semi_major_axis_km": 1300000000000,
-      "period_days": 547500
     }
   ]
 }
