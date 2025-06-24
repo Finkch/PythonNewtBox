@@ -17,7 +17,7 @@ To run a simulation, enter the command `python main.py` while in the project dir
 ### Simulation Parameters
 To adjust the seconds simulated per step, change the `t` variable (`t: Decimal = ...`). Valid values include: `SECOND`, `MINUTE`, `HOUR`, `DAY`, and `YEAR`. Alternatively, enter any Decimal value (e.g. `t: Decimal = Decimal('3.14')).
 
-To change the set of planets simulated, there are two options. The first option is one can use a present (currently just `'default'` and `'simple'`) in the line `factory.create(...)`. `'default`' is all celestial bodies currelty listed in `data/bodies.json`; `'simple'` is the sun-earth-moon system. The second option is manually adding a set of bodies. This involves calling `factory.add(x)` where `x` is the string name of the body (a complete list can be found in `data/bodies.json`) or a Body object (see (Bodies)[#body.py]).
+To change the set of planets simulated, there are two options. The first option is one can use a present (currently just `'default'` and `'simple'`) in the line `factory.create(...)`. `'default`' is all celestial bodies currelty listed in `data/bodies.json`; `'simple'` is the sun-earth-moon system. The second option is manually adding a set of bodies. This involves calling `factory.add(x)` where `x` is the string name of the body (a complete list can be found in `data/bodies.json`) or a Body object (see [body.py](#body.py)).
 
 Finally to supress prints to either the console or to file, change the level parameters in `logs_setup(...)` to `logging.warning`.
 
@@ -46,7 +46,7 @@ This file also listens for the user pressing the `escape` key. If it is pressed,
 
 
 ### solarsytem.py
-This file contains a factory object which creates solar systems for the simulation. It contains a list of current bodies. New bodies can be added to the list by calling `SolarSystemFactory.add(x)` where `x` is the string name of the body (for a complete list, see `data/bodies.json`) or a Body object (see (Bodies)[#body.py]). Then, by calling `SolarSystemFactory.spawn()`, the factory will create and return the list.
+This file contains a factory object which creates solar systems for the simulation. It contains a list of current bodies. New bodies can be added to the list by calling `SolarSystemFactory.add(x)` where `x` is the string name of the body (for a complete list, see `data/bodies.json`) or a Body object (see [body.py](#body.py)). Then, by calling `SolarSystemFactory.spawn()`, the factory will create and return the list.
 
 When a body is added via the `.add()` method and a string name is supplied, if the body has a parent it's position will automatically be added onto the position vector of its parent body. In effect, this places the child body relative to its parent. Additionally by adding a body in the way `.add()`, the velocity is automatically set by using the planet's semi-major axis, assuming the orbit has e = 0 (i.e. a circular orbit).
 
