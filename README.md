@@ -1,5 +1,5 @@
 # PythonNewtBox
-An N-body orbital simulator written in Python. Created in 2025 by Skyler Alderson. This project was completed within a single day.
+An N-body orbital simulator written in Python. Created in 2025 by Skyler Alderson. This project was completed within a single day (June 23rd).
 
 My series of "NewtBox" (or Newton Sandbox) simulations are Newtonian N-body orbital simulators I use to learn a new language. I find reimplementing a familar project is a good way to get a grasp on an unfamiliar language.
 
