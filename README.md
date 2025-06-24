@@ -63,7 +63,7 @@ The `Time` class has three parameters: `t`, the seconds per step; `steps`, the t
 The (poorly named) `Times` class is a wrapper for two `Time` objects and a `Stopwatch`. It tracks real world time and universe time.
 
 
-# vector.py
+### vector.py
 The `Vector` class is a three component vector. It used the `Decimal` data type from the `decimal` library to store its components. `Decimals` are fixed-point numbers, preventing drift that would otherwise be introduced when using floats. This project uses the default 28 digits of precision since this is meant to be a showcase more than a hyper-accurate simulation.
 
 The `Vector` class mostly contains arithmetic operations, such as add, multiply, dot- and cross-product, and so on. It also contains a method to find the magnitude of the vector and its normal vector.
