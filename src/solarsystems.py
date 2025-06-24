@@ -49,7 +49,7 @@ class SolarSystemFactory:
         pos: Vector = Vector(self.data[body]['a'])
 
         if self.data[body]['parent'] and self.data[body]['parent'] in self.solarsystem:
-            pos += self.solarsystem[self.data[body]['parent']]
+            pos += self.solarsystem[self.data[body]['parent']].pos
 
         return pos
 
