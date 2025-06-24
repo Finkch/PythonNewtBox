@@ -56,6 +56,9 @@ class SolarSystemFactory:
     # Uses the vis-viva equation to obtain body's initial velocity
     # v^2 = G M (2 / r - 1 / a). Here, r = a => v = (G M / a) ^ 0.5
     def _get_vel(self, body) -> Vector:
+        if self.data[body]['a'] == 0:   # Prevents div by zero error
+            return Vector()
+
         return Vector(
             y = (G * self.data[body]['mass'] / self.data[body]['a']) ** Decimal('0.5')
         )
