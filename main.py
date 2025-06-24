@@ -13,12 +13,8 @@ from src.simulate import simulate
 from src.constants import SECOND, MINUTE, HOUR, DAY, YEAR
 
 
-# TODO:
-# * Add visuals
-# * Add tests
-# * Added dynamic rates
 
-
+# Entry point
 if __name__ == '__main__':
 
     # Sets up the logger.
