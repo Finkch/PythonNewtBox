@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 from src.solarsystems import SolarSystemFactory
 from src.simulate import simulate
 
+from src.constants import SECOND, MINUTE, HOUR, DAY, YEAR
+
 
 # TODO:
 # * Add visuals
@@ -22,6 +24,12 @@ if __name__ == '__main__':
     # Sets up the logger.
     # There are two places the output is streamed: to a file and to console
     logs_setup(file_level = logging.INFO, stream_level = logging.DEBUG)
+
+
+    # This variable controls the step size in seconds.
+    # A value of 1 means each step moves the simulation forward by one second.
+    # The simulation will break if t is too large compared to orbital periods.
+    t: Decimal = MINUTE
 
 
     # Used to initialise the solar system
@@ -42,4 +50,4 @@ if __name__ == '__main__':
     # Creates the solar system
     bodies = factory.spawn()
 
-    simulate(Decimal(1 * 60 * 60), bodies)
+    simulate(t, bodies)
