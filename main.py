@@ -5,36 +5,41 @@ from decimal import Decimal
 
 from src.logging import logs_setup
 import logging
-
-from src.body import Body
-from src.vector import Vector
-from src.simulate import simulate
-
 logger = logging.getLogger(__name__)
+
+from src.solarsystems import SolarSystemFactory
+from src.simulate import simulate
 
 
 # TODO:
 # * Add visuals
 # * Add tests
 # * Added dynamic rates
-# * Celestial creation
-#   + Store of celestial data (body mass, etc.)
-#   + Methods to automatically instantiate orbital parameters
-# * Better entry point
 
 
 if __name__ == '__main__':
-    
-    # Sets up the logger
+
+    # Sets up the logger.
+    # There are two places the output is streamed: to a file and to console
     logs_setup(file_level = logging.INFO, stream_level = logging.DEBUG)
-    
-    sol: Body   = Body('Sol', 1.989e30)
-    terra: Body = Body(
-        'Terra',
-        5.9722e24, 
-        pos = Vector(x = 1.496e11),
-        vel = Vector(y = 2.978e4),
-    )
-    bodies = [sol, terra]
-    
-    simulate(Decimal(1 * 60), bodies)
+
+
+    # Used to initialise the solar system
+    factory: SolarSystemFactory = SolarSystemFactory()
+
+
+
+
+    #   –– Add celestial bodies here ––
+    factory.create('default') # Loads all planets, moons, and the sun as stored in bodies.json
+    # factory.create('simple') # Sun, earth, moon
+
+    # factory.add('Sun')
+    # factory.add('Earth')
+
+
+
+    # Creates the solar system
+    bodies = factory.spawn()
+
+    simulate(Decimal(1 * 60 * 60), bodies)
