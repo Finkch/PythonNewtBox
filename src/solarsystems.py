@@ -68,7 +68,7 @@ class SolarSystemFactory:
         # Loads celestial data from a JSON file
         data: list[dict[str, str]]
         with open(filepath, 'r') as file:
-            data = load(file)
+            data = load(file)['celestial_bodies']
 
         # Converts to a more useful format and unit
         bodies: dict[str, dict] = {}
