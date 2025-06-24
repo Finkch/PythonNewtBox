@@ -33,7 +33,7 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
     listener = keyboard.Listener(on_press = on_press)
     listener.start()
 
-    logger.info(f'Starting simulation with {len(bodies)} bodies...')
+    logger.info(f'Starting simulation with {len(bodies)} bodies and time step {time.real.t} seconds per step...')
 
     # Simulation loop
     while running:
@@ -55,6 +55,11 @@ def simulate(t: Decimal, bodies: list[Body]) -> None:
 
         # Increments current step
         time.step()
+
+
+    # Some logging before shutting down
+    logger.info(f'Simulation ended after {time.real} ({time.real.steps} steps) at a mean rate of {time.real.steps / time.real.time:.2f} steps per second.')
+    logger.info(f'Final state of the simulated universe:\n{time.simulation}' + ''.join([f'\n{body}' for body in bodies]))
 
 
 
