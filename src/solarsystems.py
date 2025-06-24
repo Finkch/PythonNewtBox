@@ -57,7 +57,7 @@ class SolarSystemFactory:
     # v^2 = G M (2 / r - 1 / a). Here, r = a => v = (G M / a) ^ 0.5
     def _get_vel(self, body) -> Vector:
         return Vector(
-            y = (G * self.data[body]['mass'] / self.data['body']['a']) ** Decimal('0.5')
+            y = (G * self.data[body]['mass'] / self.data[body]['a']) ** Decimal('0.5')
         )
 
 
