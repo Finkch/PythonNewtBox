@@ -33,7 +33,6 @@ if __name__ == '__main__':
 
 
 
-
     #   –– Add celestial bodies here ––
     factory.create('default') # Loads all planets, moons, and the sun as stored in bodies.json
     # factory.create('simple') # Sun, earth, moon
